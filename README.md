@@ -35,7 +35,7 @@ The main goal for this week is not to create a perfect project, but to show prog
 | Day | Assignment | Status |
 |---|---|---|
 | Day 1 | Clean only the `Gender` column using Python | Completed |
-| Day 2 | Group column-cleaning task | To be added |
+| Day 2 | Group column-cleaning task, (MAPS)| Completed |
 | Day 3 | Data visualization of different dataset columns | To be added |
 | Day 4 | Paragraph on a chosen vital sign and abnormal ranges | To be added |
 | Day 5 | Paragraph about other metrics not being considered | To be added |
@@ -206,6 +206,12 @@ This task showed me that even a simple column can create problems if the values 
 
 By cleaning the `Gender` column, the dataset became more consistent and easier to use. This is an important first step before doing exploratory data analysis or building any type of clinical AI model.
 
+## Files Included
+
+- `Assignment_1_Cleaned_Gender_Column_.ipynb` - my personal cleaning attempt for Gender.
+- Supporting screenshots or output.
+- Cleaned dataset file, if exported.
+
 ## Reflection for Assignment 1
 
 This assignment helped me understand why data cleaning matters before doing any analysis. At first, the `Gender` column looked simple, but after checking it properly, I saw that the same values were written in different ways.
@@ -218,15 +224,86 @@ Overall, this was a useful first step in getting comfortable with Python, pandas
 
 ---
 
-# Assignment 2: Group Column-Cleaning Task
+# Assignment 2: Cleaning SBP, DBP, and MAP in the Mercer General ED Triage Dataset
 
-This section will be updated after completing the Day 2 group task.
+## Overview
 
-## Planned Focus
+This assignment is my Week 0 Day 2 submission for the CariSurg MedTech Pathways Programme. For this task, the focus was on cleaning the `MAP` column in the Mercer General Emergency Department triage dataset.
 
-For Assignment 2, the goal will be to work as part of a group to clean another column in the dataset. This will build on the same skills used in Assignment 1, such as checking unique values, identifying inconsistencies, applying cleaning methods, and validating the final result.
+MAP stands for Mean Arterial Pressure, and it is calculated using systolic blood pressure (`SBP`) and diastolic blood pressure (`DBP`). Because of this, it was important to clean SBP and DBP before attempting to calculate or clean MAP. If SBP or DBP contained missing, non-numeric, or unrealistic values, then the MAP result could also become inaccurate.
 
----
+This assignment included two submissions: a group attempt and my own personal attempt.
+
+## Group Submission
+
+**Group Members:**  
+Tianna Bassaragh, Josiah-John Green, Gabrielle Johnson, Ansarah Mohammed, and Shari Oliver.
+
+For the group attempt, we cleaned the `MAP` column by first cleaning the values needed to calculate it: `SBP` and `DBP`.
+
+We converted both SBP and DBP to numeric values so that any text or invalid entries could be handled properly. After that, we checked both columns against selected valid clinical ranges. Values outside those ranges were treated as invalid and replaced with `NaN`.
+
+Instead of deleting rows, we used median imputation to fill missing SBP and DBP values. The median was used because blood pressure values can contain extreme readings, and the median is less affected by outliers than the mean. This made it a safer choice for replacing missing or invalid values.
+
+After cleaning SBP and DBP, we recalculated MAP using the formula:
+
+```python
+MAP = (SBP + 2 * DBP) / 3
+```
+
+We recalculated MAP because MAP depends directly on SBP and DBP. If the original MAP values were based on unclean blood pressure readings, then those values may not have been reliable.
+
+Finally, we ran validation checks to confirm that SBP and DBP had no missing or out-of-range values. MAP also had no missing values, and there was only one slightly low value. In the group attempt, this value was kept because it was calculated from valid SBP and DBP values and could represent a real clinical case.
+
+## Personal Submission
+
+For my personal attempt, I also started by cleaning `SBP` and `DBP` before calculating `MAP`. Since MAP is calculated from systolic and diastolic blood pressure, I wanted to make sure that the values used in the formula were already cleaned and reliable.
+
+I converted SBP and DBP to numeric values, checked for missing values, checked for values outside the selected valid ranges, and handled invalid values by replacing them with `NaN`. Missing SBP and DBP values were then filled using the median.
+
+The main difference between my personal attempt and the group attempt was how I treated the `MAP` values after calculation.
+
+In my personal attempt, I did not automatically replace MAP values with the median just because they seemed unusual. Since this is healthcare-related data, I felt that MAP values should be treated carefully. A value that appears unusual in a dataset may still be medically possible and may indicate that a patient needs urgent attention.
+
+Instead of treating certain MAP values as simple outliers, I considered the safe and concerning ranges for humans. Low MAP values, for example, can be serious because they may suggest that the body is not getting enough blood flow to vital organs. Because of this, I did not want to replace those values and risk hiding a possible medical warning.
+
+Instead, I kept the calculated MAP values and created flags for values that may require attention or clinical review. This allowed me to separate values that were truly invalid from values that were medically concerning but still possible.
+
+## Why I Used Flags for MAP
+
+I used flags in my personal attempt because medical data should not always be cleaned in the same way as ordinary numerical data. In a regular dataset, an unusual value might be treated as an outlier and replaced or removed. However, in healthcare data, an unusual value can sometimes represent a real issue with a patient's body.
+
+For MAP, values outside the normal or safe range may be important. They can show that a patient may need further attention. Because of this, I felt it was better to flag concerning MAP values instead of automatically replacing them with the median.
+
+This approach helped preserve important medical information while still making the dataset easier to review.
+
+## Validation
+
+At the end of the cleaning process, validation checks were used to confirm that:
+
+- `SBP` values were within the selected valid range.
+- `DBP` values were within the selected valid range.
+- `MAP` was calculated using cleaned SBP and DBP values.
+- Missing SBP and DBP values were handled using median imputation.
+- MAP values were reviewed carefully instead of automatically replaced.
+- MAP values that may require attention were flagged for review.
+
+This validation step was important because it confirmed that the blood pressure columns were cleaned while still preserving MAP values that may be medically meaningful.
+
+## Files Included
+
+- `week0_tutorial2_advanced_cleaning_MAPS.ipynb` - group cleaning notebook for MAP.
+- `Assignment_2_Cleaned_MAP_Personal_Attempt.ipynb` - my personal cleaning attempt for MAP.
+- Supporting screenshots or output.
+- Cleaned dataset file, if exported.
+
+## Reflection for Assignment 2
+
+This assignment helped me understand that cleaning medical data is not only about removing outliers or filling missing values. Since MAP depends on SBP and DBP, the order of cleaning was important. SBP and DBP had to be cleaned first so that MAP could be calculated from reliable values.
+
+The main thing I did differently in my personal attempt was that I did not automatically replace MAP values after calculation. Instead, I considered the safe range for human MAP values and flagged values that may require attention. I chose this approach because MAP is a health-related measurement, and unusual values may indicate a serious medical concern rather than a simple data error.
+
+Overall, this assignment helped me think more carefully about healthcare data. It showed me that cleaning decisions should not only be based on statistics, but also on what the data means in real life.
 
 # Assignment 3: Data Visualization
 
