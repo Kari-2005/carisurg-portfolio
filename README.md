@@ -321,59 +321,33 @@ For this assignment, I used the cleaned dataset after applying the cleaning step
 
 The cleaned data was then used to create the visualisations for Day 3.
 
-### Plot 1: MAP Values by GCS Category
+### Plot 3: Age vs MAP
 
-The first plot I created was a box plot comparing MAP values across different GCS categories.
+The third plot I created was a scatter plot comparing Age and MAP.
 
-GCS stands for Glasgow Coma Scale. It shows how awake or responsive a patient is. A GCS score of 3 means the patient is unconscious or not responding, while a GCS score of 15 means the patient is fully awake and responding normally.
-
-For the plot, I grouped the GCS values into categories:
-
-- Severe
-- Moderate
-- Mild
-- Normal
+Age shows how old the patient is, while MAP gives an idea of blood pressure and blood flow around the body. Since both Age and MAP are numerical values, a scatter plot was a good choice for this comparison.
 
 The clinical question for this plot was:
 
-**Do patients with different levels of alertness have different MAP values?**
+**Do older or younger patients tend to have different MAP values?**
 
-I chose a box plot because MAP is a numerical value, while GCS category is a grouped value. The box plot made it easier to compare the middle MAP value, the spread of the values, and any unusual values in each GCS group.
+I chose a scatter plot because it allows me to see if there is any visible relationship or pattern between age and MAP. Each point on the graph represents one patient. If the point is farther to the right, the patient is older. If the point is higher up, the patient has a higher MAP value.
 
-I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. The line at 65 mmHg helped show MAP values that may be too low, while the line at 110 mmHg helped show MAP values that may be high.
+I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. The line at 65 mmHg helped show MAP values that may be too low, while the line at 110 mmHg helped show MAP values that may be high. These lines made the scatter plot more meaningful because they helped identify patients with MAP values that may need attention.
 
-The circles shown on the box plot represent outliers. However, because this is a clinical dataset, I would not automatically remove them. A very high or very low MAP value may represent a real patient who needs medical attention.
-
-Image created: Included in file folder - my_plot_1.png
-
-### Plot 2: MAP Distribution by Gender
-
-The second plot I created was a histogram showing the distribution of MAP values by gender.
-
-In the cleaned dataset, the Gender column was encoded as:
-
-- 0 = Female
-- 1 = Male
-
-To make the graph easier to understand, I created a labelled gender column so the plot would show Female and Male instead of only 0 and 1.
-
-The clinical question for this plot was:
-
-**Do male and female patients have different MAP distributions?**
-
-I chose a histogram because MAP is a numerical value, and a histogram shows how often different MAP values appear. By separating the histogram by gender, I could compare the spread of MAP values for male and female patients.
-
-I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. These lines made the graph more clinically meaningful because they helped show MAP values that may be low or high.
-
-Image created: Included in file folder - my_plot_2.png
+Image created: Included in file folder - my_plot_3.png
 
 ### Why I Chose These Plots
 
-I chose these two plots because they both connect back to the MAP column that I cleaned in Assignment 2. I wanted the graphs to have a clear purpose instead of choosing random columns.
+I chose these three plots because they all connect back to the MAP column that I cleaned in Assignment 2. I wanted the graphs to have a clear purpose instead of choosing random columns.
 
 The MAP vs GCS category plot was useful because it compared blood pressure/perfusion with the patient’s level of consciousness. This is important in emergency triage because patients with low alertness and abnormal MAP may need urgent care.
 
 The MAP by Gender histogram was useful because it allowed me to compare MAP values between male and female patients. It also helped me practise using a different type of graph from the first plot.
+
+The Age vs MAP scatter plot was useful because it helped me explore whether age had any visible relationship with MAP. Since age can be an important factor in patient health, this plot gave another way to look at MAP values across the emergency triage dataset.
+
+Together, these plots helped me represent the cleaned MAP data in different ways using a box plot, histogram, and scatter plot.
 
 ### What I Learned
 
