@@ -36,7 +36,7 @@ The main goal for this week is not to create a perfect project, but to show prog
 |---|---|---|
 | Day 1 | Clean only the `Gender` column using Python | Completed |
 | Day 2 | Group column-cleaning task, (MAPS)| Completed |
-| Day 3 | Data visualization of different dataset columns | To be added |
+| Day 3 | Data visualization of different dataset columns | Completed |
 | Day 4 | Paragraph on a chosen vital sign and abnormal ranges | To be added |
 | Day 5 | Paragraph about other metrics not being considered | To be added |
 | Day 6 | Pseudocode for at-risk patient rule | To be added |
@@ -305,13 +305,85 @@ The main thing I did differently in my personal attempt was that I did not autom
 
 Overall, this assignment helped me think more carefully about healthcare data. It showed me that cleaning decisions should not only be based on statistics, but also on what the data means in real life.
 
-# Assignment 3: Data Visualization
+---
 
-This section will be updated after completing the Day 3 visualization task.
+## Assignment 3: Data Representation and Visualisation
 
-## Planned Focus
+### Overview
 
-For Assignment 3, the goal will be to create visualizations using different columns in the triage dataset. This may include histograms, scatter plots, or other basic plots to help understand patterns in the data.
+For Assignment 3, I focused on representing the cleaned emergency triage dataset using visual diagrams. In Assignments 1 and 2, I cleaned important columns such as Gender, SBP, DBP, and MAP. For this assignment, I used the cleaned data to create graphs that could help explain the dataset in a more visual and meaningful way.
+
+The goal of this assignment was not just to create graphs, but to choose plots that answered simple clinical questions. Since this dataset is based on emergency triage, I wanted my diagrams to show values that may help identify patient risk or areas that may need closer attention.
+
+### Dataset Used
+
+For this assignment, I used the cleaned dataset after applying the cleaning steps from Days 1 and 2. This included cleaning the Gender column, converting important vital signs to numeric values, handling missing or invalid values, and completing MAP values using SBP and DBP where needed.
+
+The cleaned data was then used to create the visualisations for Day 3.
+
+### Plot 1: MAP Values by GCS Category
+
+The first plot I created was a box plot comparing MAP values across different GCS categories.
+
+GCS stands for Glasgow Coma Scale. It shows how awake or responsive a patient is. A GCS score of 3 means the patient is unconscious or not responding, while a GCS score of 15 means the patient is fully awake and responding normally.
+
+For the plot, I grouped the GCS values into categories:
+
+- Severe
+- Moderate
+- Mild
+- Normal
+
+The clinical question for this plot was:
+
+**Do patients with different levels of alertness have different MAP values?**
+
+I chose a box plot because MAP is a numerical value, while GCS category is a grouped value. The box plot made it easier to compare the middle MAP value, the spread of the values, and any unusual values in each GCS group.
+
+I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. The line at 65 mmHg helped show MAP values that may be too low, while the line at 110 mmHg helped show MAP values that may be high.
+
+The circles shown on the box plot represent outliers. However, because this is a clinical dataset, I would not automatically remove them. A very high or very low MAP value may represent a real patient who needs medical attention.
+
+Image created: Included in file folder - my_plot_1.png
+
+### Plot 2: MAP Distribution by Gender
+
+The second plot I created was a histogram showing the distribution of MAP values by gender.
+
+In the cleaned dataset, the Gender column was encoded as:
+
+- 0 = Female
+- 1 = Male
+
+To make the graph easier to understand, I created a labelled gender column so the plot would show Female and Male instead of only 0 and 1.
+
+The clinical question for this plot was:
+
+**Do male and female patients have different MAP distributions?**
+
+I chose a histogram because MAP is a numerical value, and a histogram shows how often different MAP values appear. By separating the histogram by gender, I could compare the spread of MAP values for male and female patients.
+
+I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. These lines made the graph more clinically meaningful because they helped show MAP values that may be low or high.
+
+Image created: Included in file folder - my_plot_2.png
+
+### Why I Chose These Plots
+
+I chose these two plots because they both connect back to the MAP column that I cleaned in Assignment 2. I wanted the graphs to have a clear purpose instead of choosing random columns.
+
+The MAP vs GCS category plot was useful because it compared blood pressure/perfusion with the patient’s level of consciousness. This is important in emergency triage because patients with low alertness and abnormal MAP may need urgent care.
+
+The MAP by Gender histogram was useful because it allowed me to compare MAP values between male and female patients. It also helped me practise using a different type of graph from the first plot.
+
+### What I Learned
+
+From this assignment, I learned that data visualisation is more than just making graphs. A good graph should answer a question and make the data easier to understand.
+
+I also learned that adding reference lines can make a graph more useful, especially when working with healthcare data. For example, the MAP reference lines helped show which values may be clinically concerning and they can be recognized easily by staff when read.
+
+Another important thing I learned is that outliers in healthcare data should not always be removed automatically. Some outliers may be real patient values, and those values may actually be important.
+
+Overall, Assignment 3 helped me understand how cleaned data can be used to create meaningful diagrams that support clinical interpretation.
 
 ---
 
