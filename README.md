@@ -37,8 +37,8 @@ The main goal for this week is not to create a perfect project, but to show prog
 | Day 1 | Clean only the `Gender` column using Python | Completed |
 | Day 2 | Group column-cleaning task, (MAPS)| Completed |
 | Day 3 | Data visualization of different dataset columns | Completed |
-| Day 4 | Paragraph on a chosen vital sign and abnormal ranges | To be added |
-| Day 5 | Paragraph about other metrics not being considered | To be added |
+| Day 4 | Paragraph on a chosen vital sign and abnormal ranges | Completed |
+| Day 5 | Paragraph about other metrics not being considered | Completed |
 | Day 6 | Pseudocode for at-risk patient rule | To be added |
 | Day 7 | Final notebook, GitHub repo link, and career slide deck | To be added |
 
@@ -360,24 +360,39 @@ Another important thing I learned is that outliers in healthcare data should not
 Overall, Assignment 3 helped me understand how cleaned data can be used to create meaningful diagrams that support clinical interpretation.
 
 ---
-
 # Assignment 4: Chosen Vital Sign Explanation
 
-This section will be updated after completing the Day 4 clinical explanation task.
+## Overview
 
-## Planned Focus
+For Assignment 4, I wrote a short clinical explanation on Mean Arterial Pressure, also known as MAP. I chose MAP because it was one of the important measures included in the emergency triage dataset and was also connected to the cleaning work done in Assignment 2.
 
-For Assignment 4, I will choose one vital sign from the dataset and explain what it means in simple language. I will also describe the normal range and what abnormal values may suggest in an emergency department setting.
+## Summary
+
+MAP shows the average pressure in a person’s arteries during one complete heartbeat. It is useful because it gives an idea of whether blood flow may be enough to support vital organs such as the brain, heart, and kidneys.
+
+A normal MAP is usually around 70–110 mmHg. A MAP below about 60–65 mmHg may be concerning because it can suggest poor organ perfusion. In triage, this could mean that the patient may be unstable or at risk of shock and may need urgent attention.
+
+## File Included
+
+- Assignment 4 PDF/write-up on Mean Arterial Pressure.
 
 ---
 
 # Assignment 5: Other Metrics Not Considered
 
-This section will be updated after completing the Day 5 task.
+## Overview
 
-## Planned Focus
+For Assignment 5, I wrote about oxygen saturation, also known as SpO₂, as an important clinical measure that was not included in the original dataset.
 
-For Assignment 5, I will discuss other clinical metrics or patient factors that may be important but are not being fully considered in the dataset or simple analysis.
+## Summary
+
+SpO₂ measures the percentage of oxygen being carried in the blood. It is usually measured using a pulse oximeter. This measure is important in triage because it can quickly show whether a patient may be having breathing problems or poor oxygen delivery.
+
+A normal SpO₂ range is usually 95% to 100%. Low values may suggest that the patient is not getting enough oxygen and may need closer monitoring or urgent care. Although the dataset included FiO₂, this is different from SpO₂. FiO₂ shows how much oxygen is being given to the patient, while SpO₂ shows how much oxygen is actually being carried in the blood.
+
+## File Included
+
+- Assignment 5 PDF/write-up on oxygen saturation.
 
 ---
 
