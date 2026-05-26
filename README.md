@@ -39,8 +39,8 @@ The main goal for this week is not to create a perfect project, but to show prog
 | Day 3 | Data visualization of different dataset columns | Completed |
 | Day 4 | Paragraph on a chosen vital sign and abnormal ranges | Completed |
 | Day 5 | Paragraph about other metrics not being considered | Completed |
-| Day 6 | Pseudocode for at-risk patient rule | To be added |
-| Day 7 | Final notebook, GitHub repo link, and career slide deck | To be added |
+| Day 6 | Pseudocode for at-risk patient rule | Completed |
+| Day 7 | Final notebook, GitHub repo link, and career slide deck | Completed |
 
 ---
 
@@ -398,27 +398,68 @@ A normal SpO₂ range is usually 95% to 100%. Low values may suggest that the pa
 
 # Assignment 6: At-Risk Patient Logic
 
-This section will be updated after completing the Day 6 pseudocode task.
+## Overview
 
-## Planned Focus
+For Assignment 6, I created a simple rule-based logic system to flag patients who may be considered at-risk based on their Mean Arterial Pressure (MAP).
 
-For Assignment 6, I will write pseudocode or a simple rule-based approach to flag patients as at-risk based on a clinical threshold that can be explained and defended.
+This assignment connects to my earlier MAP cleaning work because I already worked with SBP, DBP, and MAP in Assignment 2. The main idea was to show how a cleaned clinical value can be used to support basic patient risk identification.
+
+## Summary
+
+For this task, I used MAP thresholds to separate missing values, invalid values, and clinically concerning values. Although the valid MAP range used during cleaning was **40–180 mmHg**, I understood that some values within this range may still be unsafe for patients.
+
+In the at-risk logic, patients were flagged if their MAP was **below 60 mmHg** or **above 110 mmHg**. A MAP below 60 mmHg may suggest poor organ perfusion, while a MAP above 110 mmHg may suggest high arterial pressure that could place strain on the heart and blood vessels.
+
+The full pseudocode, explanation of the logic, and threshold justification are included in the Assignment 6 PDF inside the `assignment_6` folder.
+
+## File Included
+
+- Assignment 6 PDF/write-up on at-risk patient logic using MAP.
 
 ---
 
 # Assignment 7: Final Week 0 Submission
 
-This section will be updated after completing the Day 7 final submission.
+## Overview
 
-## Planned Focus
+Assignment 7 is the final Week 0 submission for the CariSurg MedTech Pathways Programme. For this task, I organised my Week 0 work into this GitHub repository so that my assignments, notebooks, reports, and reflections can be reviewed in one place.
 
-For Assignment 7, I will combine the Week 0 work into a final documented notebook and make sure the repository is organized for submission.
+This final submission includes my completed Week 0 tasks, including data cleaning, visualisation, clinical explanation, at-risk patient logic, and the Career Challenge slide deck.
+
+## Summary
+
+For Week 0, I worked with the Mercer General Emergency Department triage dataset and practised using Python, pandas, Google Colab, Google Drive, and GitHub. The assignments helped me move from basic data cleaning to thinking about how clinical values can be used in patient risk identification.
+
+This repository includes work from:
+
+- Assignment 1: Cleaning the Gender column
+- Assignment 2: Cleaning SBP, DBP, and MAP
+- Assignment 3: Data representation and visualisation
+- Assignment 4: Vital sign explanation on MAP
+- Assignment 5: Other clinical metric not considered, focusing on oxygen saturation
+- Assignment 6: At-risk patient logic using MAP
+- Career Challenge slide deck
+
+## Career Challenge Slide Deck
+
+As part of Assignment 7, I also created a Career Challenge slide deck. The slide deck focuses on time management for the MedTech programme and includes a time audit, proposed weekly schedule, task prioritisation matrix, and justification for the planned schedule.
+
+This task helped me take time management more seriously by showing how my time is currently being distributed and where I can improve. It also helped me think about how to balance programme tasks with other responsibilities, so that my work can be completed more consistently instead of being rushed close to deadlines.
+
+It also reminded me that good time management is connected to good communication. If unexpected situations arise, it is important to notify peers, administrators, and programme personnel respectfully and as early as possible. This helps avoid confusion, keeps work organised, and shows professionalism when working with others.
+
+The full slide deck is included in the repository.
+
+## File Included
+
+- Career Challenge slide deck
+- Final Week 0 repository documentation
 
 ---
 
 # Tools Used During Week 0
 
-For Week 0, I used or will use:
+For Week 0, I used the following tools:
 
 - Python
 - Google Colab
@@ -427,22 +468,52 @@ For Week 0, I used or will use:
 - NumPy
 - matplotlib
 - GitHub
+- Markdown
+- Microsoft Word
+- PowerPoint
+- ChatGPT
+
+These tools helped me clean and analyse the dataset, create visualisations, write clinical explanations, organise my files, and document my work clearly in this repository.
+
+---
 
 # Repository Contents
 
-| File | Description |
+| File / Folder | Description |
 |---|---|
+| `README.md` | Main documentation for the Week 0 repository, including assignment summaries, reflections, and file descriptions |
+| `assignment_1` | Contains the notebook and/or files for cleaning the Gender column |
+| `assignment_2` | Contains the MAP cleaning work, including SBP, DBP, and MAP processing |
+| `assignment_3` | Contains the data visualisation work and generated plots |
+| `assignment_4` | Contains the vital sign report on Mean Arterial Pressure |
+| `assignment_5` | Contains the report on oxygen saturation as an important metric not considered |
+| `assignment_6` | Contains the at-risk patient logic report, including pseudocode and threshold justification |
+| `career_challenge` | Contains the Career Challenge slide deck for Assignment 7 |
 | `Week0_Tutorial1_EnvSetup_and_Cleaning_Gender.ipynb` | Notebook containing the Assignment 1 Gender column cleaning task |
-| `README.md` | Explanation of the Week 0 repository, assignment background, cleaning method, and reflections |
+| `week0_tutorial2_advanced_cleaning_MAPS.ipynb` | Notebook containing the group MAP cleaning task |
+| `Assignment_2_Cleaned_MAP_Personal_Attempt.ipynb` | Notebook containing my personal MAP cleaning attempt |
+| `my_plot_3.png` | Visualisation created for Assignment 3, showing Age vs MAP |
 
-More files will be added as I complete the remaining Week 0 assignments.
+More files may be added as I finalise and organise the repository for submission.
+
+---
 
 # Data Privacy Note
 
-Since this dataset is related to healthcare and emergency triage, I understand that it is important to be careful when sharing data publicly. Even if the dataset is reduced and de-identified, raw healthcare data should only be uploaded if permission is given by the programme or dataset provider.
+Since this dataset is related to healthcare and emergency triage, I understand that it is important to be careful when sharing data publicly. Even if the dataset is reduced and de-identified, healthcare data should still be handled responsibly.
+
+For this repository, I only included the files needed to show my Week 0 work and documentation. Any raw or sensitive healthcare data should only be uploaded if permission is given by the programme or dataset provider.
+
+---
 
 # Overall Week 0 Reflection
 
-Week 0 is helping me build the foundation for the rest of the programme. I am learning how to work with a clinical dataset, document my steps, ask better questions, and use GitHub to show my progress.
+Week 0 helped me build the foundation for the rest of the CariSurg MedTech Pathways Programme. I became more comfortable working with a clinical dataset, documenting my steps, using GitHub, and thinking about how data can connect to healthcare decisions.
 
-Even though the first assignment was focused on one column, it showed me that small data issues can become bigger problems later if they are not handled properly. This week is helping me practise being consistent, careful, and clear in how I approach data-related tasks.
+At the start, the work focused on basic cleaning, such as standardising the Gender column. As the week continued, I worked with more clinical values such as SBP, DBP, and MAP. This helped me understand that healthcare data should not only be cleaned for accuracy, but also interpreted carefully.
+
+One of the biggest lessons I learnt was that a value can be valid in a dataset but still clinically concerning for a patient. For example, MAP values within the valid cleaning range may still need to be flagged if they fall below or above safer clinical thresholds.
+
+The Career Challenge slide deck also helped me reflect on my own time management and communication. It made me look more closely at how I distribute my work during the week and where I can improve, especially when balancing fixed responsibilities, study time, rest, and unexpected tasks. It also reminded me that respectful and early communication is important when working with peers, administrators, and programme personnel.
+
+Overall, Week 0 helped me practise being more consistent, careful, and clear in how I approach data-related tasks. It also gave me a better understanding of how data analysis, healthcare, and AI can connect in a practical way.
