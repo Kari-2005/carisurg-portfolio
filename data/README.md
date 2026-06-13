@@ -1,7 +1,3 @@
-
-Tiny correction: when you paste that into GitHub, the inner code block may confuse the markdown editor because it has triple backticks inside triple backticks. So paste this safer version instead:
-
-```markdown
 # Data Folder
 
 This folder is reserved for datasets used in the CariSurg portfolio project.
