@@ -1,5 +1,6 @@
-# Documentation
+# Docs
 
-This folder contains written project documents for the CariSurg portfolio, including the Week 1 proposal and related reports.
+This folder contains written documents for the CariSurg portfolio and Evidence/screenshots required for each deliverable.
 
-The Week 1 proposal was updated using Zotero-generated in-text citations and bibliography.
+This includes Week 1 memos, proposal documents, reports, and other written deliverables.
+
