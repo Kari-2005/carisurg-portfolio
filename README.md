@@ -1,519 +1,141 @@
-# CariSurg Week 0 Portfolio
+# CariSurg Portfolio
 
-## Introduction
+This repository contains my CariSurg MedTech Pathways portfolio. It documents my technical, clinical, and research work across the programme, with a focus on emergency department triage, healthcare data cleaning, clinical reasoning, and AI-assisted decision support.
 
-This repository contains my Week 0 submissions for the CariSurg MedTech Pathways Programme. Week 0 focuses on orientation, onboarding, Python readiness, basic data cleaning, exploratory data analysis, clinical understanding, and GitHub submission.
+## Purpose
 
-The purpose of this repository is to keep all seven Week 0 assignments in one place. Each assignment will show a different part of the onboarding process, from setting up my environment and cleaning data to visualizing patient information and thinking about simple at-risk patient logic.
+The purpose of this repository is to keep my CariSurg work organised, reproducible, and easy to review.
 
-This repository is also part of my practice in using GitHub to document technical work clearly and professionally.
+It is intended for:
 
-## Background on CariSurg MedTech Pathways
+- CariSurg tutors and reviewers
+- Clinical or technical reviewers
+- Future collaborators who need to understand the project structure quickly
+- My own portfolio development throughout the programme
 
-CariSurg MedTech Pathways is a programme focused on helping Caribbean students build skills in healthcare technology, clinical AI, and medical innovation. One of the main ideas behind the programme is that Caribbean students should be part of building and understanding the technologies that may shape healthcare in the region.
+## Project Context
 
-Healthcare is becoming more data-driven, and AI tools are increasingly being used to support patients and clinicians. However, Caribbean healthcare systems have their own realities, including resource limitations, different patient populations, and different clinical settings. Because of this, it is important for students in the Caribbean to understand both the technology and the healthcare context.
+The early work in this repository focuses on a reduced emergency triage dataset from the fictional Mercer General Hospital Emergency Department.
 
-For Week 0, I worked with a reduced and de-identified emergency triage dataset from the fictional Mercer General Hospital Emergency Department. The dataset includes patient information and common vital signs such as pulse, temperature, respiratory rate, blood pressure, and oxygen saturation.
+Week 0 introduced Python, pandas, data cleaning, exploratory analysis, visualisation, and simple clinical reasoning.
 
-## Week 0 Overview
+Week 1 focused on literature review and a proposal for AI-assisted emergency triage support.
 
-Week 0 is about getting comfortable with the tools and workflow that will be used during the programme. This includes:
+This repository is structured to support audit-ready work, with clear folders for notebooks, written documents, data notes, and future reusable source code.
 
-- Setting up Google Colab and Google Drive
-- Confirming the Python environment
-- Using pandas for data cleaning
-- Creating visualizations
-- Writing short clinical explanations
-- Creating simple rule-based logic
-- Uploading work to GitHub
-
-The main goal for this week is not to create a perfect project, but to show progress, submit consistently, and become more confident using the tools.
-
-## Week 0 Assignment Tracker
-
-| Day | Assignment | Status |
-|---|---|---|
-| Day 1 | Clean only the `Gender` column using Python | Completed |
-| Day 2 | Group column-cleaning task, (MAPS)| Completed |
-| Day 3 | Data visualization of different dataset columns | Completed |
-| Day 4 | Paragraph on a chosen vital sign and abnormal ranges | Completed |
-| Day 5 | Paragraph about other metrics not being considered | Completed |
-| Day 6 | Pseudocode for at-risk patient rule | Completed |
-| Day 7 | Final notebook, GitHub repo link, and career slide deck | Completed |
-
----
-
-# Assignment 1: Cleaning the Gender Column in the Mercer General ED Triage Dataset
-
-## Overview
-
-This assignment is my Week 0 Day 1 submission for the CariSurg MedTech Pathways Programme. For this task, I worked with the Mercer General Emergency Department triage dataset and focused only on cleaning the `Gender` column.
-
-The purpose of this assignment was to practise basic data cleaning using Python and pandas. Even though the task focused on one column, it showed me how important it is to check and clean data before doing any deeper analysis, visualization, or machine learning.
-
-## Dataset Context
-
-The dataset is based on emergency triage information. In a real emergency department, triage data helps healthcare workers understand how urgent a patient’s condition may be. This type of data may include demographic information and vital signs that support clinical decision-making.
-
-For this assignment, the focus was not on building a model yet. The focus was on preparing one part of the dataset properly by cleaning inconsistent values in the `Gender` column.
-
-## Problem Identified
-
-When I checked the `Gender` column, I noticed that the same gender categories were written in different ways.
-
-Some of the values included:
-
-- `Male`
-- `MALE`
-- `Female`
-- `FEMALE`
-- `1`
-- `0`
-
-This was an issue because Python may treat these as separate categories even though some of them mean the same thing. For example, `Male`, `MALE`, and `1` all represent male patients, but they are not written in the same format.
-
-If this was not cleaned, it could affect future analysis, graphs, summaries, or machine learning work.
-
-## Objective
-
-The main objective of this assignment was to clean the `Gender` column by converting inconsistent gender values into a standard numerical format.
-
-The cleaned format used was:
-
-| Value | Meaning |
-|---:|---|
-| `0` | Female |
-| `1` | Male |
-| `2` | Non-binary / future consideration |
-
-The current dataset only contained male and female values, but I included non-binary values in the mapping as a future consideration.
-
-## My Cleaning Approach
-
-For this assignment, I approached the cleaning by first converting all the values to lowercase before mapping them.
-
-Instead of mapping every capitalized version separately, such as `Male`, `MALE`, and `male`, I made the values consistent first. I converted the column values to strings, removed extra spaces, and made everything lowercase.
-
-This means that values like:
-
-- `MALE`
-- `Male`
-- `male`
-
-would all become:
+## Repository Structure
 
 ```text
-male
+carisurg-portfolio/
+├── data/          # Data notes only; dataset is not uploaded publicly
+├── docs/          # Written reports, proposals, PDFs, figures, and evidence
+├── notebooks/     # Jupyter notebooks for data cleaning and analysis
+├── src/           # Reserved for reusable Python code later in the programme
+├── .gitignore     # Files and folders Git should not track
+├── LICENSE        # MIT licence
+├── README.md      # Main project overview
+└── requirements.txt
 ```
 
-before being mapped.
+## How to Run the Notebooks
 
-I felt this made the code cleaner and easier to manage because I did not have to list every possible capitalization of the same word.
+1. Clone the repository:
 
-I also added extra cases for `m` and `f` in case future datasets use abbreviations instead of full words. Another thing I added was non-binary options such as `non-binary`, `nonbinary`, and `nb` for future datasets that may include more gender categories.
-
-## Gender Mapping Used
-
-```python
-gender_map = {
-    # Male values
-    'male': 1,
-    'm': 1,
-    '1': 1,
-
-    # Female values
-    'female': 0,
-    'f': 0,
-    '0': 0,
-
-    # Non-binary values for future consideration
-    'non-binary': 2,
-    'nonbinary': 2,
-    'nb': 2,
-    '2': 2
-}
+```bash
+git clone https://github.com/Kari-2005/carisurg-portfolio.git
+cd carisurg-portfolio
 ```
 
-## Code Used to Clean the Column
+2. Create and activate a virtual environment:
 
-Before applying the mapping dictionary, I converted the values to strings, removed extra spaces, and made everything lowercase.
-
-```python
-df_raw['Gender_Cleaned'] = (
-    df_raw['Gender']
-    .astype(str)
-    .str.strip()
-    .str.lower()
-    .map(gender_map)
-)
+```bash
+python -m venv .venv
 ```
 
-The `.astype(str)` part makes sure the values are treated as text. The `.str.strip()` part removes extra spaces before or after each value. The `.str.lower()` part converts everything to lowercase. The `.map(gender_map)` part then applies the mapping dictionary and converts the values into the chosen numerical categories.
+On Windows:
 
-## Future Consideration for Non-binary Values
-
-Although the dataset did not include non-binary values, I wanted to include them in the mapping for future use. Real-world healthcare datasets may include more than just male and female categories, so I thought it was better to make the cleaning process more flexible.
-
-I did not add any fake non-binary data to the dataset. I only added the mapping so that if a future dataset contains non-binary values, the code can handle them instead of turning them into missing values.
-
-It is also important to remember that the numbers are only category labels. For example, `2` does not mean non-binary is greater than male or female. The numbers are just used to represent different groups.
-
-For future machine learning work, one-hot encoding may be better because gender is a category, not a ranked number.
-
-## Validation
-
-After creating the cleaned column, I checked the results using:
-
-```python
-df_raw['Gender_Cleaned'].value_counts(dropna=False)
+```bash
+.venv\Scripts\activate
 ```
 
-This showed how many values were mapped into each category.
+On macOS/Linux:
 
-I also checked for missing or unmapped values using:
-
-```python
-df_raw['Gender_Cleaned'].isnull().sum()
+```bash
+source .venv/bin/activate
 ```
 
-This was important because if any original value was not included in the dictionary, it would show up as `NaN` after mapping. Checking for missing values helped me confirm whether the cleaning worked properly.
+3. Install the required packages:
 
-After confirming that the cleaned column was correct, I replaced the original dirty `Gender` column with the cleaned version.
-
-```python
-if 'Gender' in df_raw.columns:
-    df_raw = df_raw.drop(columns=['Gender'])
-
-df_raw = df_raw.rename(columns={'Gender_Cleaned': 'Gender'})
+```bash
+pip install -r requirements.txt
 ```
 
-## Final Result
+4. Open the notebooks:
 
-After cleaning, the `Gender` column was standardized into numerical values:
-
-| Value | Meaning |
-|---:|---|
-| `0` | Female |
-| `1` | Male |
-| `2` | Non-binary / future consideration |
-
-This makes the column easier to work with for future analysis and helps avoid confusion caused by inconsistent formatting.
-
-## Why This Cleaning Step Matters
-
-This task showed me that even a simple column can create problems if the values are inconsistent. If the same category is written in different ways, it can affect summaries, graphs, and any future machine learning work.
-
-By cleaning the `Gender` column, the dataset became more consistent and easier to use. This is an important first step before doing exploratory data analysis or building any type of clinical AI model.
-
-## Files Included
-
-- `Assignment_1_Cleaned_Gender_Column_.ipynb` - my personal cleaning attempt for Gender.
-- Supporting screenshots or output.
-- Cleaned dataset file, if exported.
-
-## Reflection for Assignment 1
-
-This assignment helped me understand why data cleaning matters before doing any analysis. At first, the `Gender` column looked simple, but after checking it properly, I saw that the same values were written in different ways.
-
-One thing I did differently was converting all the gender values to lowercase before mapping them. This made the code cleaner because I did not have to map every capitalized version separately. I also added possible `m` and `f` abbreviations, along with non-binary options, to make the code more useful for future datasets.
-
-By using pandas and a mapping dictionary, I was able to clean the column in a structured way. I also learned the importance of checking the cleaned results instead of assuming the code worked correctly.
-
-Overall, this was a useful first step in getting comfortable with Python, pandas, Google Colab, and GitHub for the rest of Week 0.
-
----
-
-# Assignment 2: Cleaning SBP, DBP, and MAP in the Mercer General ED Triage Dataset
-
-## Overview
-
-This assignment is my Week 0 Day 2 submission for the CariSurg MedTech Pathways Programme. For this task, the focus was on cleaning the `MAP` column in the Mercer General Emergency Department triage dataset.
-
-MAP stands for Mean Arterial Pressure, and it is calculated using systolic blood pressure (`SBP`) and diastolic blood pressure (`DBP`). Because of this, it was important to clean SBP and DBP before attempting to calculate or clean MAP. If SBP or DBP contained missing, non-numeric, or unrealistic values, then the MAP result could also become inaccurate.
-
-This assignment included two submissions: a group attempt and my own personal attempt.
-
-## Group Submission
-
-**Group Members:**  
-Tianna Bassaragh, Josiah-John Green, Gabrielle Johnson, Ansarah Mohammed, and Shari Oliver.
-
-For the group attempt, we cleaned the `MAP` column by first cleaning the values needed to calculate it: `SBP` and `DBP`.
-
-We converted both SBP and DBP to numeric values so that any text or invalid entries could be handled properly. After that, we checked both columns against selected valid clinical ranges. Values outside those ranges were treated as invalid and replaced with `NaN`.
-
-Instead of deleting rows, we used median imputation to fill missing SBP and DBP values. The median was used because blood pressure values can contain extreme readings, and the median is less affected by outliers than the mean. This made it a safer choice for replacing missing or invalid values.
-
-After cleaning SBP and DBP, we recalculated MAP using the formula:
-
-```python
-MAP = (SBP + 2 * DBP) / 3
+```bash
+jupyter lab
 ```
 
-We recalculated MAP because MAP depends directly on SBP and DBP. If the original MAP values were based on unclean blood pressure readings, then those values may not have been reliable.
+Then navigate to:
 
-Finally, we ran validation checks to confirm that SBP and DBP had no missing or out-of-range values. MAP also had no missing values, and there was only one slightly low value. In the group attempt, this value was kept because it was calculated from valid SBP and DBP values and could represent a real clinical case.
+```text
+notebooks/Week0/
+```
 
-## Personal Submission
+## Data Privacy
 
-For my personal attempt, I also started by cleaning `SBP` and `DBP` before calculating `MAP`. Since MAP is calculated from systolic and diastolic blood pressure, I wanted to make sure that the values used in the formula were already cleaned and reliable.
+The original Week 0 emergency triage dataset is not uploaded to this public repository because it is healthcare-related data.
 
-I converted SBP and DBP to numeric values, checked for missing values, checked for values outside the selected valid ranges, and handled invalid values by replacing them with `NaN`. Missing SBP and DBP values were then filled using the median.
+Even if data is reduced or de-identified, raw clinical data should not be shared publicly unless permission is clearly given by the programme or dataset provider.
 
-The main difference between my personal attempt and the group attempt was how I treated the `MAP` values after calculation.
+When running the notebooks, the dataset should be stored locally or in a private Google Drive location.
 
-In my personal attempt, I did not automatically replace MAP values with the median just because they seemed unusual. Since this is healthcare-related data, I felt that MAP values should be treated carefully. A value that appears unusual in a dataset may still be medically possible and may indicate that a patient needs urgent attention.
+## Current Contents
 
-Instead of treating certain MAP values as simple outliers, I considered the safe and concerning ranges for humans. Low MAP values, for example, can be serious because they may suggest that the body is not getting enough blood flow to vital organs. Because of this, I did not want to replace those values and risk hiding a possible medical warning.
+### Week 0
 
-Instead, I kept the calculated MAP values and created flags for values that may require attention or clinical review. This allowed me to separate values that were truly invalid from values that were medically concerning but still possible.
+Week 0 includes:
 
-## Why I Used Flags for MAP
+- Environment setup and Python readiness
+- Gender column cleaning
+- SBP, DBP, and MAP cleaning
+- Exploratory visualisation
+- Clinical explanation of MAP
+- Discussion of SpO₂ as an additional triage metric
+- Rule-based at-risk patient logic
+- Career planning slide deck
 
-I used flags in my personal attempt because medical data should not always be cleaned in the same way as ordinary numerical data. In a regular dataset, an unusual value might be treated as an outlier and replaced or removed. However, in healthcare data, an unusual value can sometimes represent a real issue with a patient's body.
+### Week 1
 
-For MAP, values outside the normal or safe range may be important. They can show that a patient may need further attention. Because of this, I felt it was better to flag concerning MAP values instead of automatically replacing them with the median.
+Week 1 includes:
 
-This approach helped preserve important medical information while still making the dataset easier to review.
+- Literature review on emergency department triage
+- AI-assisted triage research summaries
+- Problem statement and proposed solution for Mercer General Hospital
+- Proposal documents with Vancouver-style references
 
-## Validation
-
-At the end of the cleaning process, validation checks were used to confirm that:
-
-- `SBP` values were within the selected valid range.
-- `DBP` values were within the selected valid range.
-- `MAP` was calculated using cleaned SBP and DBP values.
-- Missing SBP and DBP values were handled using median imputation.
-- MAP values were reviewed carefully instead of automatically replaced.
-- MAP values that may require attention were flagged for review.
-
-This validation step was important because it confirmed that the blood pressure columns were cleaned while still preserving MAP values that may be medically meaningful.
-
-## Files Included
-
-- `week0_tutorial2_advanced_cleaning_MAPS.ipynb` - group cleaning notebook for MAP.
-- `Assignment_2_Cleaned_MAP_Personal_Attempt.ipynb` - my personal cleaning attempt for MAP.
-- Supporting screenshots or output.
-- Cleaned dataset file, if exported.
-
-## Reflection for Assignment 2
-
-This assignment helped me understand that cleaning medical data is not only about removing outliers or filling missing values. Since MAP depends on SBP and DBP, the order of cleaning was important. SBP and DBP had to be cleaned first so that MAP could be calculated from reliable values.
-
-The main thing I did differently in my personal attempt was that I did not automatically replace MAP values after calculation. Instead, I considered the safe range for human MAP values and flagged values that may require attention. I chose this approach because MAP is a health-related measurement, and unusual values may indicate a serious medical concern rather than a simple data error.
-
-Overall, this assignment helped me think more carefully about healthcare data. It showed me that cleaning decisions should not only be based on statistics, but also on what the data means in real life.
-
----
-
-## Assignment 3: Data Representation and Visualisation
-
-### Overview
-
-For Assignment 3, I focused on representing the cleaned emergency triage dataset using visual diagrams. In Assignments 1 and 2, I cleaned important columns such as Gender, SBP, DBP, and MAP. For this assignment, I used the cleaned data to create graphs that could help explain the dataset in a more visual and meaningful way.
-
-The goal of this assignment was not just to create graphs, but to choose plots that answered simple clinical questions. Since this dataset is based on emergency triage, I wanted my diagrams to show values that may help identify patient risk or areas that may need closer attention.
-
-### Dataset Used
-
-For this assignment, I used the cleaned dataset after applying the cleaning steps from Days 1 and 2. This included cleaning the Gender column, converting important vital signs to numeric values, handling missing or invalid values, and completing MAP values using SBP and DBP where needed.
-
-The cleaned data was then used to create the visualisations for Day 3.
-
-### Plot 3: Age vs MAP
-
-The third plot I created was a scatter plot comparing Age and MAP.
-
-Age shows how old the patient is, while MAP gives an idea of blood pressure and blood flow around the body. Since both Age and MAP are numerical values, a scatter plot was a good choice for this comparison.
-
-The clinical question for this plot was:
-
-**Do older or younger patients tend to have different MAP values?**
-
-I chose a scatter plot because it allows me to see if there is any visible relationship or pattern between age and MAP. Each point on the graph represents one patient. If the point is farther to the right, the patient is older. If the point is higher up, the patient has a higher MAP value.
-
-I also added reference lines at MAP = 65 mmHg and MAP = 110 mmHg. The line at 65 mmHg helped show MAP values that may be too low, while the line at 110 mmHg helped show MAP values that may be high. These lines made the scatter plot more meaningful because they helped identify patients with MAP values that may need attention.
-
-Image created: Included in file folder - my_plot_3.png
-
-### Why I Chose These Plots
-
-I chose these three plots because they all connect back to the MAP column that I cleaned in Assignment 2. I wanted the graphs to have a clear purpose instead of choosing random columns.
-
-The MAP vs GCS category plot was useful because it compared blood pressure/perfusion with the patient’s level of consciousness. This is important in emergency triage because patients with low alertness and abnormal MAP may need urgent care.
-
-The MAP by Gender histogram was useful because it allowed me to compare MAP values between male and female patients. It also helped me practise using a different type of graph from the first plot.
-
-The Age vs MAP scatter plot was useful because it helped me explore whether age had any visible relationship with MAP. Since age can be an important factor in patient health, this plot gave another way to look at MAP values across the emergency triage dataset.
-
-Together, these plots helped me represent the cleaned MAP data in different ways using a box plot, histogram, and scatter plot.
-
-### What I Learned
-
-From this assignment, I learned that data visualisation is more than just making graphs. A good graph should answer a question and make the data easier to understand.
-
-I also learned that adding reference lines can make a graph more useful, especially when working with healthcare data. For example, the MAP reference lines helped show which values may be clinically concerning and they can be recognized easily by staff when read.
-
-Another important thing I learned is that outliers in healthcare data should not always be removed automatically. Some outliers may be real patient values, and those values may actually be important.
-
-Overall, Assignment 3 helped me understand how cleaned data can be used to create meaningful diagrams that support clinical interpretation.
-
----
-# Assignment 4: Chosen Vital Sign Explanation
-
-## Overview
-
-For Assignment 4, I wrote a short clinical explanation on Mean Arterial Pressure, also known as MAP. I chose MAP because it was one of the important measures included in the emergency triage dataset and was also connected to the cleaning work done in Assignment 2.
-
-## Summary
-
-MAP shows the average pressure in a person’s arteries during one complete heartbeat. It is useful because it gives an idea of whether blood flow may be enough to support vital organs such as the brain, heart, and kidneys.
-
-A normal MAP is usually around 70–110 mmHg. A MAP below about 60–65 mmHg may be concerning because it can suggest poor organ perfusion. In triage, this could mean that the patient may be unstable or at risk of shock and may need urgent attention.
-
-## File Included
-
-- Assignment 4 PDF/write-up on Mean Arterial Pressure.
-
----
-
-# Assignment 5: Other Metrics Not Considered
-
-## Overview
-
-For Assignment 5, I wrote about oxygen saturation, also known as SpO₂, as an important clinical measure that was not included in the original dataset.
-
-## Summary
-
-SpO₂ measures the percentage of oxygen being carried in the blood. It is usually measured using a pulse oximeter. This measure is important in triage because it can quickly show whether a patient may be having breathing problems or poor oxygen delivery.
-
-A normal SpO₂ range is usually 95% to 100%. Low values may suggest that the patient is not getting enough oxygen and may need closer monitoring or urgent care. Although the dataset included FiO₂, this is different from SpO₂. FiO₂ shows how much oxygen is being given to the patient, while SpO₂ shows how much oxygen is actually being carried in the blood.
-
-## File Included
-
-- Assignment 5 PDF/write-up on oxygen saturation.
-
----
-
-# Assignment 6: At-Risk Patient Logic
-
-## Overview
-
-For Assignment 6, I created a simple rule-based logic system to flag patients who may be considered at-risk based on their Mean Arterial Pressure (MAP).
-
-This assignment connects to my earlier MAP cleaning work because I already worked with SBP, DBP, and MAP in Assignment 2. The main idea was to show how a cleaned clinical value can be used to support basic patient risk identification.
-
-## Summary
-
-For this task, I used MAP thresholds to separate missing values, invalid values, and clinically concerning values. Although the valid MAP range used during cleaning was **40–180 mmHg**, I understood that some values within this range may still be unsafe for patients.
-
-In the at-risk logic, patients were flagged if their MAP was **below 60 mmHg** or **above 110 mmHg**. A MAP below 60 mmHg may suggest poor organ perfusion, while a MAP above 110 mmHg may suggest high arterial pressure that could place strain on the heart and blood vessels.
-
-The full pseudocode, explanation of the logic, and threshold justification are included in the Assignment 6 PDF inside the `assignment_6` folder.
-
-## File Included
-
-- Assignment 6 PDF/write-up on at-risk patient logic using MAP.
-
----
-
-# Assignment 7: Final Week 0 Submission
-
-## Overview
-
-Assignment 7 is the final Week 0 submission for the CariSurg MedTech Pathways Programme. For this task, I organised my Week 0 work into this GitHub repository so that my assignments, notebooks, reports, and reflections can be reviewed in one place.
-
-This final submission includes my completed Week 0 tasks, including data cleaning, visualisation, clinical explanation, at-risk patient logic, and the Career Challenge slide deck.
-
-## Summary
-
-For Week 0, I worked with the Mercer General Emergency Department triage dataset and practised using Python, pandas, Google Colab, Google Drive, and GitHub. The assignments helped me move from basic data cleaning to thinking about how clinical values can be used in patient risk identification.
-
-This repository includes work from:
-
-- Assignment 1: Cleaning the Gender column
-- Assignment 2: Cleaning SBP, DBP, and MAP
-- Assignment 3: Data representation and visualisation
-- Assignment 4: Vital sign explanation on MAP
-- Assignment 5: Other clinical metric not considered, focusing on oxygen saturation
-- Assignment 6: At-risk patient logic using MAP
-- Career Challenge slide deck
-
-## Career Challenge Slide Deck
-
-As part of Assignment 7, I also created a Career Challenge slide deck. The slide deck focuses on time management for the MedTech programme and includes a time audit, proposed weekly schedule, task prioritisation matrix, and justification for the planned schedule.
-
-This task helped me take time management more seriously by showing how my time is currently being distributed and where I can improve. It also helped me think about how to balance programme tasks with other responsibilities, so that my work can be completed more consistently instead of being rushed close to deadlines.
-
-It also reminded me that good time management is connected to good communication. If unexpected situations arise, it is important to notify peers, administrators, and programme personnel respectfully and as early as possible. This helps avoid confusion, keeps work organised, and shows professionalism when working with others.
-
-The full slide deck is included in the repository.
-
-## File Included
-
-- Career Challenge slide deck
-- Final Week 0 repository documentation
-
----
-
-# Tools Used During Week 0
-
-For Week 0, I used the following tools:
+## Tools Used
 
 - Python
-- Google Colab
-- Google Drive
 - pandas
 - NumPy
 - matplotlib
-- GitHub
-- Markdown
-- Microsoft Word
-- PowerPoint
-- ChatGPT
+- Jupyter Notebook / Google Colab
+- Git and GitHub
+- Zotero for reference management
 
-These tools helped me clean and analyse the dataset, create visualisations, write clinical explanations, organise my files, and document my work clearly in this repository.
+## Contributing
 
----
+This is an individual learning portfolio for the CariSurg MedTech Pathways programme.
 
-# Repository Contents
+Suggestions, corrections, or feedback from tutors and reviewers are welcome through GitHub issues or pull requests.
 
-| File / Folder | Description |
-|---|---|
-| `README.md` | Main documentation for the Week 0 repository, including assignment summaries, reflections, and file descriptions |
-| `assignment_1` | Contains the notebook and/or files for cleaning the Gender column |
-| `assignment_2` | Contains the MAP cleaning work, including SBP, DBP, and MAP processing |
-| `assignment_3` | Contains the data visualisation work and generated plots |
-| `assignment_4` | Contains the vital sign report on Mean Arterial Pressure |
-| `assignment_5` | Contains the report on oxygen saturation as an important metric not considered |
-| `assignment_6` | Contains the at-risk patient logic report, including pseudocode and threshold justification |
-| `career_challenge` | Contains the Career Challenge slide deck for Assignment 7 |
-| `Week0_Tutorial1_EnvSetup_and_Cleaning_Gender.ipynb` | Notebook containing the Assignment 1 Gender column cleaning task |
-| `week0_tutorial2_advanced_cleaning_MAPS.ipynb` | Notebook containing the group MAP cleaning task |
-| `Assignment_2_Cleaned_MAP_Personal_Attempt.ipynb` | Notebook containing my personal MAP cleaning attempt |
-| `my_plot_3.png` | Visualisation created for Assignment 3, showing Age vs MAP |
+## Licence
 
-More files may be added as I finalise and organise the repository for submission.
+This repository is licensed under the MIT Licence. See the `LICENSE` file for details.
 
----
+## Author
 
-# Data Privacy Note
-
-Since this dataset is related to healthcare and emergency triage, I understand that it is important to be careful when sharing data publicly. Even if the dataset is reduced and de-identified, healthcare data should still be handled responsibly.
-
-For this repository, I only included the files needed to show my Week 0 work and documentation. Any raw or sensitive healthcare data should only be uploaded if permission is given by the programme or dataset provider.
-
----
-
-# Overall Week 0 Reflection
-
-Week 0 helped me build the foundation for the rest of the CariSurg MedTech Pathways Programme. I became more comfortable working with a clinical dataset, documenting my steps, using GitHub, and thinking about how data can connect to healthcare decisions.
-
-At the start, the work focused on basic cleaning, such as standardising the Gender column. As the week continued, I worked with more clinical values such as SBP, DBP, and MAP. This helped me understand that healthcare data should not only be cleaned for accuracy, but also interpreted carefully.
-
-One of the biggest lessons I learnt was that a value can be valid in a dataset but still clinically concerning for a patient. For example, MAP values within the valid cleaning range may still need to be flagged if they fall below or above safer clinical thresholds.
-
-The Career Challenge slide deck also helped me reflect on my own time management and communication. It made me look more closely at how I distribute my work during the week and where I can improve, especially when balancing fixed responsibilities, study time, rest, and unexpected tasks. It also reminded me that respectful and early communication is important when working with peers, administrators, and programme personnel.
-
-Overall, Week 0 helped me practise being more consistent, careful, and clear in how I approach data-related tasks. It also gave me a better understanding of how data analysis, healthcare, and AI can connect in a practical way.
+Ansarah Mohammed  
+Electrical and Computer Engineering Student  
+CariSurg MedTech Pathways Trainee
