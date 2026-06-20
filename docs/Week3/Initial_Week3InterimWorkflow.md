@@ -1,8 +1,6 @@
 # Week 3 Interim Workflow Diagram
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#222222','primaryBorderColor':'#999999','lineColor':'#555555','textColor':'#222222','clusterBkg':'#fafafa','clusterBorder':'#bbbbbb'}}}%%
-flowchart TD
     %%{init: {'theme': 'base', 'themeVariables': {'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#222222','primaryBorderColor':'#999999','lineColor':'#555555','textColor':'#222222','clusterBkg':'#fafafa','clusterBorder':'#bbbbbb'}}}%%
 flowchart TD
     subgraph FrontDoor["Front Door"]
