@@ -1,53 +1,34 @@
 ```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 14, 'rankSpacing': 20, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}}}%%
 flowchart TD
+    A[Patient arrival] --> B[Registration]
+    B --> C[Vitals & chief complaint]
+    C -.-> P1[["AI-1: Risk flag<br/>after vitals"]]
+    C --> D[Triage nurse assessment]
+    D -.-> P2[["AI-2: ESI decision<br/>support"]]
+    D --> E{ESI level}
 
-A["Patient arrival<br/>Ambulance, walk-in, private vehicle, taxi, or EMS"] --> B["Registration<br/>Demographic and administrative details captured"]
+    E -->|ESI 1| F[Resuscitation]
+    E -->|ESI 2-3| G[Acute care]
+    E -->|ESI 4-5| H[Fast-track /<br/>waiting room]
+    H --> I{Prolonged wait or<br/>status change?}
+    I -->|Yes| P3[["AI-3: Re-triage<br/>prompt"]]
+    I -->|No| J[ED doctor assessment]
+    F --> J
+    G --> J
 
-B --> C["Vital-sign collection<br/>Vitals, pain score, chief complaint, allergies, brief history"]
+    J --> K[Investigations &<br/>treatment]
+    K -.-> P4[["AI-4: Flow &<br/>bottleneck alerts"]]
+    K --> L{Disposition decision}
+    L -->|Admit| M[Admission to ward]
+    L -->|Discharge| N[Discharge]
+    L -->|Transfer| O[Transfer facility]
+    M --> Q[Exit ED workflow]
+    N --> Q
+    O --> Q
 
-C --> P1[["AI Plug-in Point 1<br/>Early risk check after vital signs<br/>Flag abnormal vital-sign patterns for nurse review"]]
+    P3 -.->|repeat vitals| C
 
-P1 --> D["Triage nurse assessment<br/>Clinical judgement and review of patient presentation"]
-
-D --> E{"ESI level assigned"}
-
-E --> P2[["AI Plug-in Point 2<br/>ESI mismatch check<br/>Compare assigned ESI level with model risk to flag possible under-triage or over-triage"]]
-
-P2 --> F{"Care-area assignment"}
-
-F -->|ESI 1| G["Resuscitation area<br/>Immediate intervention"]
-
-F -->|ESI 2-3| H["Acute care area<br/>Urgent or semi-urgent review"]
-
-F -->|ESI 4-5| I["Fast-track or waiting room<br/>Lower-acuity pathway"]
-
-I --> J{"Prolonged wait<br/>or condition changes?"}
-
-J -->|Yes| P3[["AI Plug-in Point 3<br/>Waiting-room re-triage prompt<br/>Recommend repeat vitals or reassessment"]]
-
-P3 --> C
-
-J -->|No| K["ED doctor assessment"]
-
-G --> K
-
-H --> K
-
-K --> L["Investigations and treatment<br/>Labs, imaging, medication, procedures, specialist review"]
-
-L --> P4[["AI Plug-in Point 4<br/>Flow and bottleneck visibility<br/>Highlight delays in labs, imaging, consults, or ward-bed availability"]]
-
-P4 --> M{"Disposition decision"}
-
-M -->|Admit| N["Admission to ward or higher-level care"]
-
-M -->|Discharge| O["Discharge with advice or follow-up"]
-
-M -->|Transfer| R["Transfer to another facility or service"]
-
-N --> S["Exit ED workflow"]
-
-O --> S
-
-R --> S
+    classDef ai fill:#eef2ff,stroke:#5b6bb0,stroke-dasharray: 2 2,color:#33396b;
+    class P1,P2,P3,P4 ai;
 ```
