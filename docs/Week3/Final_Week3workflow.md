@@ -1,5 +1,22 @@
 ```mermaid
-%%{init: {'flowchart': {'nodeSpacing': 14, 'rankSpacing': 20, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}}}%%
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'background': '#ffffff',
+    'primaryColor': '#ffffff',
+    'primaryTextColor': '#111111',
+    'primaryBorderColor': '#444444',
+    'lineColor': '#444444',
+    'secondaryColor': '#ffffff',
+    'tertiaryColor': '#ffffff',
+    'fontSize': '13px'
+  },
+  'flowchart': {
+    'nodeSpacing': 14,
+    'rankSpacing': 20,
+    'curve': 'basis'
+  }
+}}%%
 flowchart TD
     A[Patient arrival] --> B[Registration]
     B --> C[Vital signs & chief complaint]
