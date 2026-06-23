@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
 
 A[Patient arrival<br/>Ambulance, walk-in, private vehicle, taxi, or EMS] --> B[Registration<br/>Demographic and administrative details captured]
@@ -39,3 +40,4 @@ L -->|Transfer| O[Transfer to another facility or service]
 M --> Q[Exit ED workflow]
 N --> Q
 O --> Q
+```
