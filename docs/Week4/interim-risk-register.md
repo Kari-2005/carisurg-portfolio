@@ -1,8 +1,3 @@
-# Week 4 Interim Risk Register  
-## Project: Caribbean ED Validation of Machine-Learning Triage Support
-
-| Risk Name | Category | Likelihood | Impact | Mitigation | Signal of Success |
-|---|---|---|---|---|---|
 # Week 4 Interim Risk Register
 
 ## Project: Caribbean ED Validation of Machine-Learning Triage Support
