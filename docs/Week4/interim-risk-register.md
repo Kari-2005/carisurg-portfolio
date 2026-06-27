@@ -26,3 +26,13 @@ Likelihood means how likely the risk is to happen. Impact means how serious the 
 ## Interim Notes
 
 For this interim draft, the risks I think are most important are automation bias, distribution shift, and underrepresentation of patient groups. These are the most concerning because they could directly affect patient safety. If the model performs differently in a real ED setting, if staff trust it too much, or if some patient groups are not represented well in the training data, the tool could lead to unsafe triage decisions. Because of this, the system should stay as a support tool only, with human oversight, regular validation, and clear accountability before any real deployment.
+
+## Sources Consulted
+
+1. World Health Organization. *Ethics and Governance of Artificial Intelligence for Health: WHO Guidance*. Geneva: World Health Organization; 2021.
+
+2. CariSurg MedTech Pathways. *Week 4: Ethics, Safety & Risk Awareness in Healthcare Technology*. 2026.
+
+3. CariSurg MedTech Pathways. *Week 4 Tutorial 2: Building a Risk Register*. 2026.
+
+4. CariSurg MedTech Pathways. *Week 4 Tutorial 5: Communicating Risk to Stakeholders*. 2026.
