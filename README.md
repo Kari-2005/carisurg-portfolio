@@ -76,19 +76,21 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
-Then navigate to:
-
+Then navigate to relevant week folder:
+For example:
 ```text
 notebooks/Week0/
+nnotebooks/Week5/
 ```
+Some notebooks may also be run in Google Colab if the dataset is stored privately in Google Drive. The raw datasets are not stored in this public repository, so file paths may need to be updated before running the notebooks.
 
 ## Data Privacy
 
-The original Week 0 emergency triage dataset is not uploaded to this public repository because it is healthcare-related data.
+The healthcare-related datasets used in this repository are not uploaded publicly.
 
-Even if data is reduced or de-identified, raw clinical data should not be shared publicly unless permission is clearly given by the programme or dataset provider.
+Even when data is reduced or de-identified, raw clinical data should not be shared publicly unless permission is clearly given by the programme or dataset provider.
 
-When running the notebooks, the dataset should be stored locally or in a private Google Drive location.
+When running the notebooks, datasets should be stored locally or in a private Google Drive location. This repository only includes notebooks, written outputs, summary figures, and data notes needed for review.
 
 ## Current Contents
 
