@@ -1,0 +1,11 @@
+rank,feature,reasoning
+1,age,Age is clinically relevant because older patients may have higher risk and more complex presentations.
+2,triage_vital_o2,Oxygen saturation reflects respiratory status and can signal deterioration.
+3,triage_vital_o2_device,Use of an oxygen device may indicate respiratory compromise or higher clinical concern at triage.
+4,triage_vital_hr,"Heart rate can reflect pain, fever, shock, anxiety, or acute illness."
+5,triage_vital_rr,Respiratory rate is a key vital sign for identifying respiratory distress.
+6,triage_vital_sbp,"Systolic blood pressure can indicate hypotension, shock, or severe hypertension."
+7,triage_vital_dbp,Diastolic blood pressure adds context to overall blood pressure status.
+8,triage_vital_temp,"Temperature can indicate fever, infection, or other acute illness."
+9,triage_glucose,Glucose is important for identifying acute metabolic problems such as hypoglycaemia or hyperglycaemia.
+10,selected chief complaint flags,"Chief complaint flags capture the reason for ED attendance and may identify red-flag presentations such as chest pain, shortness of breath, altered mental status, or suicidal ideation."

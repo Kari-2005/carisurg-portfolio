@@ -1,0 +1,9 @@
+feature,low_threshold,high_threshold,below_range,above_range,total_flagged,percent_flagged
+age,0,120,0,0,0,0.0
+triage_vital_hr,30,220,0,1,1,0.0
+triage_vital_sbp,50,260,0,1,1,0.0
+triage_vital_dbp,30,180,7,2,9,0.02
+triage_vital_rr,8,60,0,4,4,0.01
+triage_vital_o2,50,100,0,0,0,0.0
+triage_vital_temp,90,106,0,0,0,0.0
+triage_glucose,20,1000,4,4,8,0.01
