@@ -1,19 +1,34 @@
-# Data Folder
+# Data
 
-This folder is reserved for datasets used in the CariSurg portfolio project.
+This folder is reserved for data notes and privacy documentation.
 
-The Week 0 emergency triage dataset is **not uploaded to this public repository** because it is healthcare-related data. Even when a dataset is reduced or de-identified, raw clinical data should not be shared publicly unless permission is clearly given by the programme or dataset provider.
+Raw healthcare-related datasets are not uploaded to this public repository. Even when data is reduced or de-identified, clinical data should not be shared publicly unless permission is clearly given by the programme or dataset provider.
 
-## Expected Data Location
+For this portfolio, datasets should be stored locally or in a private Google Drive location when running notebooks.
 
-When running the Week 0 notebooks, the dataset should be stored locally or in Google Drive and loaded from a private path.
+## Datasets Used
 
-Example path:
+### Week 0
 
-`/content/drive/MyDrive/CARISURG/Week0/EmergencyTriageDataset_Reduced_Dirty.csv`
+The Week 0 reduced emergency triage dataset was used for introductory clinical data cleaning, MAP calculation, exploratory visualisation, and rule-based at-risk patient logic.
 
-## Privacy Note
+### Week 5
 
-No real patient data, private credentials, API keys, or sensitive files should be committed to this repository.
+The Week 5 emergency department dataset, `yaleemmlc_admissionprediction_triage.csv`, was used for data profiling, missingness review, ESI distribution analysis, chief complaint exploration, feasibility assessment, and preparation for Week 6 baseline modelling.
 
-Only documentation describing the dataset should be placed here unless the programme gives permission to upload the actual data.
+## Public Repository Policy
+
+This repository may include:
+
+- Jupyter notebooks
+- Data notes
+- Summary tables
+- Data-quality figures
+- Written reports and memos
+
+This repository should not include:
+
+- Raw clinical datasets
+- Full patient-level rows
+- Identifiable patient information
+- Private credentials or access tokens
