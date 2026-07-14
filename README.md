@@ -196,6 +196,41 @@ Main Week 5 conclusion:
 
 The dataset is suitable for building a Week 6 baseline triage model, provided leakage columns such as `disposition` and `previousdispo` are excluded, rare ESI classes are evaluated carefully, and findings are treated as exploratory until validated in a Caribbean emergency department setting.
 
+### Week 6
+
+Week 6 focused on developing and evaluating two simple baseline models for predicting Emergency Severity Index (ESI) triage level. The purpose was to establish a clear and reproducible starting point before considering more advanced machine-learning approaches. Particular attention was given to patient safety, class imbalance and the models’ ability to recognise rare ESI Level 1 patients.
+
+My contributions this week included:
+
+- Preparing selected triage-time variables for baseline modelling
+- Dividing the dataset into an 80% training set and a 20% testing set using stratification
+- Using a fixed random seed of 42 to support reproducibility
+- Training and evaluating a logistic regression classifier
+- Training and evaluating a decision tree classifier limited to a maximum depth of 5
+- Comparing both models with a stratified random-guess baseline
+- Calculating overall accuracy and per-class precision, recall and F1-score
+- Comparing macro and weighted F1-scores
+- Producing confusion matrices for both required models
+- Selecting ESI Level 1 recall as the primary clinical safety metric
+- Documenting the main model failures and their possible consequences for patients
+- Exploring an additional refined logistic regression model using a broader set of triage-time information
+- Preparing a three-page baseline model report and a one-minute clinical explainer video
+
+Key Week 6 files include:
+
+- Final modelling notebook: `notebooks/Week6/Week6_Final_Ansarah.ipynb`
+- Final baseline model report: `docs/Week6/Final/Week6_Final_Baseline_Model_Report_Ansarah.pdf`
+- Logistic regression confusion matrix: `docs/Week6/Final/week6_final_confusion_logistic_regression.png`
+- Decision tree confusion matrix: `docs/Week6/Final/week6_final_confusion_decision_tree.png`
+- Baseline model comparison table: `docs/Week6/Final/week6_baseline_model_comparison.csv`
+- Supporting figures and clinical explainer materials: `docs/Week6/Final/`
+
+Main Week 6 conclusion:
+
+The logistic regression and decision tree achieved higher overall accuracy, macro F1 and weighted F1 scores than the stratified random baseline. However, neither required model correctly identified any of the 16 ESI Level 1 patients in the testing set. This showed that reasonable overall performance did not necessarily indicate safe performance for the rarest and most urgent patients.
+
+An additional refined logistic regression model correctly identified 4 of the 16 ESI Level 1 patients, increasing ESI Level 1 recall from 0.000 to 0.250. However, it still missed 12 critically urgent patients. The models are therefore treated as experimental benchmarks rather than tools that are ready for clinical use.
+
 ## Contributing
 
 This is an individual learning portfolio for the CariSurg MedTech Pathways programme.
