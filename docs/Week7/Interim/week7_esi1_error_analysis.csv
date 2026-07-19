@@ -1,0 +1,4 @@
+Model,True ESI 1 Patients,Correctly Identified,Missed ESI 1 Patients,ESI 1 Miss Rate (%),Predicted as ESI 1,Predicted as ESI 2,Predicted as ESI 3,Predicted as ESI 4,Predicted as ESI 5
+Logistic Regression,16,0,16,100.0,0,9,7,0,0
+Decision Tree,16,0,16,100.0,0,9,7,0,0
+Tuned Random Forest,16,1,15,93.8,1,11,2,2,0
