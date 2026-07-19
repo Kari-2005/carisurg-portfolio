@@ -14,15 +14,17 @@ All three models used the same ten triage-time predictor variables, the same 80/
 
 The models were assessed using accuracy, macro precision, macro recall, macro F1-score, weighted F1-score, ESI Level 1 precision and recall, training time, inference time per patient and interpretability.
 
-## Initial Benchmark Table
+The selected Random Forest used 200 trees, a minimum leaf size of eight, all ten predictors as candidates at each split, no fixed maximum depth and balanced class weights. The settings were selected through three-fold stratified cross-validation using macro F1.
+
+## Interim Benchmark Table
 
 | Model | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 | ESI 1 Precision | ESI 1 Recall | Training Time (s) | Inference Time (ms/patient) | Interpretability |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| Logistic Regression | 0.5449 | 0.2757 | 0.2455 | 0.2215 | 0.4682 | 0.0000 | 0.0000 | 0.9913 | 0.0007 | High |
-| Decision Tree | 0.5434 | 0.2404 | 0.2417 | 0.2152 | 0.4591 | 0.0000 | 0.0000 | 0.0835 | 0.0002 | High |
-| Tuned Random Forest | 0.4756 | 0.3032 | 0.3133 | 0.3021 | 0.4845 | 0.0476 | 0.0625 | 27.5167 | 0.0540 | Moderate |
+| Logistic Regression | 0.5449 | 0.2757 | 0.2455 | 0.2215 | 0.4682 | 0.0000 | 0.0000 | 1.0895 | 0.0007 | High |
+| Decision Tree | 0.5434 | 0.2404 | 0.2417 | 0.2152 | 0.4591 | 0.0000 | 0.0000 | 0.1004 | 0.0001 | High |
+| Tuned Random Forest | 0.4756 | 0.3032 | 0.3133 | 0.3021 | 0.4845 | 0.0476 | 0.0625 | 28.4996 | 0.0320 | Moderate |
 
-*Training and inference times were measured in Google Colab and may vary depending on the available runtime hardware. Inference time was calculated per patient using the median of five test-set prediction runs.*
+*Training and inference times were measured in Google Colab and may vary depending on the available runtime hardware. Inference time was calculated per patient using the median of five test-set prediction runs. Logistic Regression timing includes the scaling required by that model.*
 
 ## ESI Level 1 Error Comparison
 
