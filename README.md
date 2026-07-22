@@ -235,7 +235,7 @@ An additional refined logistic regression model correctly identified 4 of the 16
 
 Week 7 focused on model optimisation and the trade-offs between predictive performance, interpretability, computational cost and practical deployment. The two original Week 6 baseline models were rebuilt and compared with a more complex Random Forest classifier using the same ten triage-time predictors, 80/20 stratified train-test split and fixed random seed of 42.
 
-My interim work this week included:
+My contributions this week included:
 
 - Rebuilding the original Logistic Regression and depth-limited Decision Tree baselines
 - Training an initial class-weighted Random Forest
@@ -244,21 +244,24 @@ My interim work this week included:
 - Measuring training time and inference time per patient
 - Assessing model interpretability using Random Forest feature importance
 - Reviewing confusion matrices and ESI Level 1 under-triage errors
-- Examining ESI Level 1 precision to identify possible false-alarm and alert-fatigue risks
+- Examining ESI Level 1 precision to identify false-alarm and alert-fatigue risks
 - Assessing overfitting by comparing training and validation macro F1
-- Preparing an interim benchmark table and provisional Phase 3 recommendation
+- Preparing a three-page cost-benefit memo and formal model decision journal
 
-Key Week 7 interim files include:
+Key Week 7 final files include:
 
-- Interim model optimisation notebook: `notebooks/Week7/Week7_Interim_Model_Ansarah.ipynb`
-- Draft model benchmark: `docs/Week7/Interim/week7_draft_benchmark.md`
-- Supporting figures and model outputs: `docs/Week7/Interim/`
+- Final model optimisation notebook: `notebooks/Week7/Week7_Final_Model_Ansarah.ipynb`
+- Final cost-benefit memo (PDF): `docs/Week7/Final/Week 7 Cost–Benefit Memo - Ansarah.pdf`
+- Final cost-benefit memo (Markdown): `docs/Week7/Final/week-7-cost-benefit.md`
+- Final benchmark table: `docs/Week7/Final/csvs/week7_final_benchmark.csv`
+- Decision journal: `docs/decisions/2026-week-7-model-choice.md`
+- Supporting figures, confusion matrices and feature-importance outputs: `docs/Week7/Final/Figures/`
 
-Main Week 7 interim conclusion:
+Main Week 7 conclusion:
 
-The tuned Random Forest achieved the strongest macro F1-score and distributed its performance more evenly across the five ESI categories. However, it correctly identified only one of the 16 ESI Level 1 patients, produced several false critical alerts, reduced overall accuracy and required considerably more training time than the simpler models.
+The tuned Random Forest achieved the strongest macro F1-score and distributed its performance more evenly across the five ESI categories. However, it correctly identified only one of the 16 ESI Level 1 patients, generated 20 false critical alerts, reduced overall accuracy and required considerably more training time than the simpler models.
 
-Logistic Regression therefore remains the more defensible current baseline for Phase 3, while the Random Forest is retained as an experimental candidate for further feature development, error analysis and clinical review. This recommendation remains provisional until the final Week 7 cost-benefit memo is completed.
+Logistic Regression was therefore selected as the more defensible Phase 3 development baseline because it achieved the highest overall accuracy, remained easier to explain and govern, and imposed a lower technical burden. The Random Forest is retained as an experimental comparison model, while future work should prioritise improved predictors, class-imbalance handling, error analysis and local clinical validation. Neither model is considered ready for clinical deployment.
 
 ## Contributing
 
