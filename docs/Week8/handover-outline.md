@@ -33,7 +33,54 @@ Supporting comparison:
 
 ## 3. How to Run
 
-The completed pipeline will be run from the repository root using:
+The completed pipeline will be run from the repository root using the command:
 
-```bash
-python scripts/train.py --config config.yaml
+`python scripts/train.py --config config.yaml`
+
+The final handover instructions will explain how to:
+
+1. Clone the repository.
+2. Create and activate a Python virtual environment.
+3. Install the pinned dependencies from `requirements.txt`.
+4. Place the authorised dataset in the configured local data directory.
+5. Run the training command.
+6. Locate the saved model and evaluation results.
+
+## 4. Data Location and Governance
+
+The Mercer emergency triage dataset is not stored in the public GitHub
+repository. An authorised copy will be stored locally or in an approved private
+location and accessed through the path specified in `config.yaml`.
+
+The dataset is excluded from the repository using `.gitignore` and must not be
+redistributed or publicly committed. Access should be limited to authorised
+project personnel. The final handover will confirm the approved internal data
+location and responsible governance contact.
+
+## 5. Known Limitations
+
+- The models were developed using data from one healthcare setting, so their
+  performance may not generalise to Mercer General Hospital or other patient
+  populations.
+- ESI Level 1 cases were rare. The selected Logistic Regression did not
+  correctly identify any of the 16 ESI Level 1 patients in the Week 7 test set,
+  so it must not be treated as clinically safe or deployment-ready.
+- The model has not been prospectively validated in a live emergency department
+  workflow and must not replace clinician judgement.
+
+## 6. Final-Submission Items Still to Add
+
+- Create and confirm the final `config.yaml`.
+- Create and test the `scripts/train.py` entry point.
+- Pin the required library versions in `requirements.txt`.
+- Add `src/features.py` and `src/utils.py` if required by the final pipeline.
+- Add and run the two required pytest sanity checks.
+- Confirm the approved dataset location and data-governance contact.
+- Replace this outline with the final one-page handover document.
+
+## 7. Project Contacts
+
+- Model and code questions: Ansarah Mohammed
+- Clinical questions: Dr. De Fretias
+- Clinical IT and deployment questions: Martina Griffith
+- Data-governance contact: To be confirmed
