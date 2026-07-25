@@ -263,6 +263,73 @@ The tuned Random Forest achieved the strongest macro F1-score and distributed it
 
 Logistic Regression was therefore selected as the more defensible Phase 3 development baseline because it achieved the highest overall accuracy, remained easier to explain and govern, and imposed a lower technical burden. The Random Forest is retained as an experimental comparison model, while future work should prioritise improved predictors, class-imbalance handling, error analysis and local clinical validation. Neither model is considered ready for clinical deployment.
 
+### Week 8 — Interim Submission
+
+Week 8 focuses on turning the exploratory modelling work from Weeks 6 and 7
+into a more reproducible and maintainable machine-learning project. For the
+interim submission, the data-loading and model-evaluation code was refactored
+into reusable Python modules. A draft model-selection audit trail and an outline
+of the final handover document were also prepared.
+
+#### Week 8 Interim Deliverables
+
+The modular source code is located in the [`src/`](src/) folder:
+
+- [`src/data.py`](src/data.py) — loads and validates the dataset and creates a
+  stratified train-test split
+- [`src/model.py`](src/model.py) — trains supplied models, calculates evaluation
+  metrics and records training and inference times
+- [`src/__init__.py`](src/__init__.py) — identifies `src` as a Python package
+
+The written deliverables are located in [`docs/Week8/`](docs/Week8/):
+
+- [Draft model-selection results](docs/Week8/model-selection-draft.md) —
+  provides an audit trail of the models evaluated during Weeks 6 and 7,
+  including their hyperparameters, performance, computational costs and
+  selection status
+- [Draft handover outline](docs/Week8/handover-outline.md) — outlines the
+  project summary, final model decision, future running instructions, data
+  governance requirements and known limitations
+
+Supporting Week 7 evidence:
+
+- [Model-choice decision journal](docs/decisions/2026-week-7-model-choice.md)
+- [Final Week 7 benchmark table](docs/Week7/Final/csvs/week7_final_benchmark.csv)
+- [Week 7 cost-benefit memo](docs/Week7/Final/week-7-cost-benefit.md)
+
+#### Current Model Decision
+
+Logistic Regression was retained as the selected Phase 3 development baseline.
+Although the tuned Random Forest achieved a higher macro F1-score and identified
+one additional ESI Level 1 patient, it had lower overall accuracy, generated
+false critical alerts, showed substantial overfitting and required greater
+computational resources. Logistic Regression remained easier to explain, test
+and govern.
+
+This selection represents a reproducible experimental baseline rather than a
+clinically deployable model. The selected Logistic Regression failed to identify
+any of the 16 ESI Level 1 patients in the Week 7 test set, so further feature
+development, class-imbalance handling and clinical validation are required.
+
+#### Interim Status
+
+The following components will be completed for the Week 8 final submission:
+
+- Final `config.yaml` containing the pinned Logistic Regression configuration
+- `scripts/train.py` command-line training entry point
+- Remaining feature and utility modules
+- Two pytest sanity checks
+- Pinned library requirements
+- Final one-page handover document
+- End-to-end reproducibility testing
+
+Main Week 8 interim takeaway:
+
+The project has begun moving from notebook-based experimentation to a modular
+and reproducible Python structure. The interim work documents both the selected
+model and the limitations that prevent it from being considered clinically
+ready.
+
 ## Contributing
 
 This is an individual learning portfolio for the CariSurg MedTech Pathways programme.
