@@ -1,9 +1,0 @@
-__pycache__/
-.ipynb_checkpoints/
-.env
-.venv/
-*.pyc
-*.pkl
-*.csv
-*.xlsx
-.DS_Store
