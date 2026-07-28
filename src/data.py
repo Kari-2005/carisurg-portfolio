@@ -1,9 +1,8 @@
 """
 Functions for loading and preparing the Mercer emergency triage dataset.
 
-This module was created by refactoring the data-loading steps used in the
-Week 6 and Week 7 notebooks. Further cleaning and validation functions will
-be added before the Week 8 final submission.
+This module contains the data-loading and stratified train-test splitting
+functions used by the final Week 8 reproducible pipeline.
 """
 
 from pathlib import Path
