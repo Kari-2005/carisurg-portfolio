@@ -1,0 +1,52 @@
+# Week 8 final reproducible model configuration
+# CariSurg MedTech Pathways
+# Student: Ansarah Mohammed
+
+project:
+  name: "Mercer Emergency Triage Model"
+  status: "Experimental development baseline"
+  clinical_use: false
+
+data:
+  path: "data/yaleemmlc_admissionprediction_triage.csv"
+  target: "esi"
+
+  features:
+    - "age"
+    - "triage_vital_o2_device"
+    - "triage_vital_o2"
+    - "cc_chestpain"
+    - "cc_shortnessofbreath"
+    - "cc_alteredmentalstatus"
+    - "triage_glucose"
+    - "triage_vital_hr"
+    - "triage_vital_rr"
+    - "triage_vital_sbp"
+
+split:
+  test_size: 0.20
+  random_state: 42
+  stratify: true
+
+model:
+  name: "logistic_regression"
+  hyperparameters:
+    max_iter: 1000
+    random_state: 42
+
+preprocessing:
+  standard_scaling: true
+
+evaluation:
+  critical_class: 1
+  labels:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+
+outputs:
+  directory: "outputs"
+  model_file: "logistic_regression_pipeline.joblib"
+  metrics_file: "training_metrics.json"
