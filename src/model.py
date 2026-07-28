@@ -1,24 +1,57 @@
 """
-Functions for training and evaluating the Mercer triage models.
+Functions for constructing, training and evaluating the Mercer triage model.
 
-The Week 8 final pipeline will construct the selected Logistic Regression
-model from the hyperparameters recorded in config.yaml. Keeping training and
-evaluation in this module allows the same procedure to be reused by the
-command-line training script and the sanity checks.
+The Week 8 pipeline reproduces the Logistic Regression model selected during
+Week 7. Its hyperparameters are supplied through config.yaml so that the
+training procedure remains consistent and reproducible.
 """
 
 import time
 
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+
+def build_model(hyperparameters, standard_scaling=True):
+    """
+    Construct the selected Logistic Regression model.
+
+    Parameters
+    ----------
+    hyperparameters : dict
+        Logistic Regression settings read from config.yaml.
+    standard_scaling : bool, default=True
+        Whether the predictors should be standardised before training.
+
+    Returns
+    -------
+    sklearn.pipeline.Pipeline
+        Untrained preprocessing and classification pipeline.
+    """
+    pipeline_steps = []
+
+    if standard_scaling:
+        pipeline_steps.append(("scaler", StandardScaler()))
+
+    pipeline_steps.append(
+        (
+            "classifier",
+            LogisticRegression(**hyperparameters),
+        )
+    )
+
+    return Pipeline(pipeline_steps)
 
 
 def train_model(model, X_train, y_train):
     """
-    Fit a supplied scikit-learn model and record its training time.
+    Fit the supplied model and record its training time.
 
     Parameters
     ----------
@@ -32,7 +65,7 @@ def train_model(model, X_train, y_train):
     Returns
     -------
     tuple
-        The fitted model and training time in seconds.
+        Fitted model and training time in seconds.
     """
     start_time = time.perf_counter()
     model.fit(X_train, y_train)
@@ -43,11 +76,11 @@ def train_model(model, X_train, y_train):
 
 def evaluate_model(model, X_test, y_test, critical_class=1):
     """
-    Evaluate a fitted multiclass model and record prediction time.
+    Evaluate the fitted multiclass model and record prediction time.
 
-    Macro-averaged metrics are included because the ESI classes are
-    imbalanced. Precision and recall for ESI Level 1 are reported separately
-    because missed critical cases are especially important in this project.
+    Macro-averaged metrics are reported because the ESI classes are
+    imbalanced. Precision and recall for ESI Level 1 are also reported
+    because missed critical cases are especially important.
 
     Parameters
     ----------
@@ -58,12 +91,12 @@ def evaluate_model(model, X_test, y_test, critical_class=1):
     y_test : pandas.Series or array-like
         True testing labels.
     critical_class : int, default=1
-        Label used for the ESI Level 1 class.
+        Label representing the most urgent ESI class.
 
     Returns
     -------
     tuple
-        Predictions and a dictionary containing evaluation results.
+        Predictions and a dictionary of evaluation results.
     """
     start_time = time.perf_counter()
     predictions = model.predict(X_test)
@@ -76,59 +109,73 @@ def evaluate_model(model, X_test, y_test, critical_class=1):
         else 0.0
     )
 
-    labels = list(getattr(model, "classes_", []))
+    labels = list(model.classes_)
+
+    class_precision = precision_score(
+        y_test,
+        predictions,
+        labels=labels,
+        average=None,
+        zero_division=0,
+    )
+    class_recall = recall_score(
+        y_test,
+        predictions,
+        labels=labels,
+        average=None,
+        zero_division=0,
+    )
+
     if critical_class in labels:
         critical_index = labels.index(critical_class)
-        class_precision = precision_score(
-            y_test,
-            predictions,
-            labels=labels,
-            average=None,
-            zero_division=0,
-        )
-        class_recall = recall_score(
-            y_test,
-            predictions,
-            labels=labels,
-            average=None,
-            zero_division=0,
-        )
-        esi_1_precision = class_precision[critical_index]
-        esi_1_recall = class_recall[critical_index]
+        critical_precision = class_precision[critical_index]
+        critical_recall = class_recall[critical_index]
     else:
-        esi_1_precision = 0.0
-        esi_1_recall = 0.0
+        critical_precision = 0.0
+        critical_recall = 0.0
 
     metrics = {
-        "accuracy": accuracy_score(y_test, predictions),
-        "macro_precision": precision_score(
-            y_test,
-            predictions,
-            average="macro",
-            zero_division=0,
+        "accuracy": float(accuracy_score(y_test, predictions)),
+        "macro_precision": float(
+            precision_score(
+                y_test,
+                predictions,
+                average="macro",
+                zero_division=0,
+            )
         ),
-        "macro_recall": recall_score(
-            y_test,
-            predictions,
-            average="macro",
-            zero_division=0,
+        "macro_recall": float(
+            recall_score(
+                y_test,
+                predictions,
+                average="macro",
+                zero_division=0,
+            )
         ),
-        "macro_f1": f1_score(
-            y_test,
-            predictions,
-            average="macro",
-            zero_division=0,
+        "macro_f1": float(
+            f1_score(
+                y_test,
+                predictions,
+                average="macro",
+                zero_division=0,
+            )
         ),
-        "weighted_f1": f1_score(
-            y_test,
-            predictions,
-            average="weighted",
-            zero_division=0,
+        "weighted_f1": float(
+            f1_score(
+                y_test,
+                predictions,
+                average="weighted",
+                zero_division=0,
+            )
         ),
-        "esi_1_precision": esi_1_precision,
-        "esi_1_recall": esi_1_recall,
-        "total_inference_time_seconds": total_inference_time,
-        "inference_time_per_patient_ms": inference_time_per_patient_ms,
+        "esi_1_precision": float(critical_precision),
+        "esi_1_recall": float(critical_recall),
+        "total_inference_time_seconds": float(
+            total_inference_time
+        ),
+        "inference_time_per_patient_ms": float(
+            inference_time_per_patient_ms
+        ),
         "classification_report": classification_report(
             y_test,
             predictions,
@@ -137,4 +184,3 @@ def evaluate_model(model, X_test, y_test, critical_class=1):
     }
 
     return predictions, metrics
-
