@@ -30,7 +30,7 @@ carisurg-portfolio/
 ├── data/          # Data notes only; dataset is not uploaded publicly
 ├── docs/          # Written reports, proposals, PDFs, figures, and evidence
 ├── notebooks/     # Jupyter notebooks for data cleaning and analysis
-├── src/           # Reserved for reusable Python code later in the programme
+├── src/           # Reusable data, feature, model and utility modules
 ├── .gitignore     # Files and folders Git should not track
 ├── LICENSE        # MIT licence
 ├── README.md      # Main project overview
