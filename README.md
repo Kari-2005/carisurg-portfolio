@@ -263,72 +263,141 @@ The tuned Random Forest achieved the strongest macro F1-score and distributed it
 
 Logistic Regression was therefore selected as the more defensible Phase 3 development baseline because it achieved the highest overall accuracy, remained easier to explain and govern, and imposed a lower technical burden. The Random Forest is retained as an experimental comparison model, while future work should prioritise improved predictors, class-imbalance handling, error analysis and local clinical validation. Neither model is considered ready for clinical deployment.
 
-### Week 8 — Interim Submission
+### Week 8 — Reproducibility and Modular Project Design
 
-Week 8 focuses on turning the exploratory modelling work from Weeks 6 and 7
-into a more reproducible and maintainable machine-learning project. For the
-interim submission, the data-loading and model-evaluation code was refactored
-into reusable Python modules. A draft model-selection audit trail and an outline
-of the final handover document were also prepared.
+Week 8 focused on converting the modelling work from Weeks 6 and 7 into a modular, reproducible and audit-ready Python project. The final Phase 3 Logistic Regression model was pinned in a single configuration file and can now be tested and trained without searching through the earlier notebooks.
 
-#### Week 8 Interim Deliverables
+My contributions this week included:
 
-The modular source code is located in the [`src/`](src/) folder:
+- Refactoring the data preparation, feature processing, modelling and evaluation code into reusable modules
+- Pinning the selected Logistic Regression model, predictors and hyperparameters in `config.yaml`
+- Creating a command-line training script that runs the complete pipeline
+- Pinning the project dependencies in `requirements.txt`
+- Adding pytest sanity checks for the data and model pipeline
+- Producing an auditable model-selection table covering the models evaluated during Weeks 6 and 7
+- Writing a one-page handover document with installation, testing and training instructions
+- Completing an end-to-end reproducibility test using the authorised dataset
 
-- [`src/data.py`](src/data.py) — loads and validates the dataset and creates a
-  stratified train-test split
-- [`src/model.py`](src/model.py) — trains supplied models, calculates evaluation
-  metrics and records training and inference times
-- [`src/__init__.py`](src/__init__.py) — identifies `src` as a Python package
+#### Running the Week 8 Pipeline
 
-The written deliverables are located in [`docs/Week8/`](docs/Week8/):
+Clone the repository and enter the project folder:
 
-- [Draft model-selection results](docs/Week8/model-selection-draft.md) —
-  provides an audit trail of the models evaluated during Weeks 6 and 7,
-  including their hyperparameters, performance, computational costs and
-  selection status
-- [Draft handover outline](docs/Week8/handover-outline.md) — outlines the
-  project summary, final model decision, future running instructions, data
-  governance requirements and known limitations
+```bash
+git clone https://github.com/Kari-2005/carisurg-portfolio.git
+cd carisurg-portfolio
+```
 
-Supporting Week 7 evidence:
+Create and activate a virtual environment:
 
-- [Model-choice decision journal](docs/decisions/2026-week-7-model-choice.md)
-- [Final Week 7 benchmark table](docs/Week7/Final/csvs/week7_final_benchmark.csv)
-- [Week 7 cost-benefit memo](docs/Week7/Final/week-7-cost-benefit.md)
+```bash
+python -m venv .venv
+```
 
-#### Current Model Decision
+On Windows:
 
-Logistic Regression was retained as the selected Phase 3 development baseline.
-Although the tuned Random Forest achieved a higher macro F1-score and identified
-one additional ESI Level 1 patient, it had lower overall accuracy, generated
-false critical alerts, showed substantial overfitting and required greater
-computational resources. Logistic Regression remained easier to explain, test
-and govern.
+```bash
+.venv\Scripts\activate
+```
 
-This selection represents a reproducible experimental baseline rather than a
-clinically deployable model. The selected Logistic Regression failed to identify
-any of the 16 ESI Level 1 patients in the Week 7 test set, so further feature
-development, class-imbalance handling and clinical validation are required.
+On macOS or Linux:
 
-#### Interim Status
+```bash
+source .venv/bin/activate
+```
 
-The following components will be completed for the Week 8 final submission:
+Install the pinned dependencies:
 
-- Final `config.yaml` containing the pinned Logistic Regression configuration
-- `scripts/train.py` command-line training entry point
-- Remaining feature and utility modules
-- Two pytest sanity checks
-- Pinned library requirements
-- Final one-page handover document
-- End-to-end reproducibility testing
+```bash
+pip install -r requirements.txt
+```
 
-Main Week 8 interim takeaway:
+Obtain the authorised dataset through the programme’s approved data-sharing process and place it at:
 
-The project has begun moving from notebook-based experimentation to a modular
-and reproducible Python structure. The interim work documents both the selected
-model and the limitations that prevent it from being considered clinically
-ready.
+```text
+data/yaleemmlc_admissionprediction_triage.csv
+```
+
+The raw dataset is intentionally excluded from this public repository.
+
+Run the sanity checks:
+
+```bash
+pytest tests/ -v
+```
+
+The expected result is:
+
+```text
+3 passed
+```
+
+Train and evaluate the selected model:
+
+```bash
+python scripts/train.py --config config.yaml
+```
+
+A successful run creates:
+
+```text
+outputs/logistic_regression_pipeline.joblib
+outputs/training_metrics.json
+```
+
+#### Week 8 Project Structure
+
+```text
+carisurg-portfolio/
+├── config.yaml
+├── scripts/
+│   └── train.py
+├── src/
+│   ├── __init__.py
+│   ├── data.py
+│   ├── features.py
+│   ├── model.py
+│   └── utils.py
+├── tests/
+│   ├── test_data.py
+│   └── test_model.py
+├── docs/
+│   └── Week8/
+│       ├── handover.md
+│       └── model-selection.md
+├── pytest.ini
+└── requirements.txt
+```
+
+#### Key Week 8 Files
+
+- [Configuration file](config.yaml) — records the selected model, predictors, data split, preprocessing and output settings
+- [Training script](scripts/train.py) — runs the complete training and evaluation pipeline
+- [Source modules](src/) — contain the reusable project code
+- [Sanity checks](tests/) — test the data requirements and model pipeline
+- [Model-selection results](docs/Week8/model-selection.md) — provides an audit trail of every model evaluated during Weeks 6 and 7
+- [Model handover](docs/Week8/handover.md) — provides the Monday-morning setup, testing and training instructions
+- [Pinned dependencies](requirements.txt) — records the required package versions
+
+#### Reproduced Final Results
+
+The complete pipeline was successfully tested using 55,121 usable rows, divided into 44,096 training rows and 11,025 testing rows.
+
+| Metric | Result |
+|---|---:|
+| Accuracy | 0.545 |
+| Macro F1-score | 0.221 |
+| Weighted F1-score | 0.468 |
+| ESI Level 1 recall | 0.000 |
+
+#### Final Model Decision and Safety Limitation
+
+Logistic Regression was retained as the Phase 3 development baseline because it achieved the highest overall accuracy in the controlled Week 7 comparison while remaining easier to explain, test and govern than the Random Forest models. It also required considerably less training and inference time.
+
+However, the selected model failed to identify any of the 16 ESI Level 1 patients in the test set. It is therefore an experimental and reproducible development baseline, not a model ready for clinical use. Future work should prioritise improved triage-time predictors, class-imbalance handling, subgroup evaluation, external validation and clinician-led review.
+
+Main Week 8 takeaway:
+
+The project now passes the intended “new hire Monday” reproducibility test: an authorised user can clone the repository, install the pinned dependencies, run the sanity checks and train the selected model using one configuration file and one command.
 
 ## Contributing
 
