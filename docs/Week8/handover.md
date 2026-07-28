@@ -31,13 +31,29 @@ git clone https://github.com/Kari-2005/carisurg-portfolio.git
 cd carisurg-portfolio
 ```
 
-Create a virtual environment and install the pinned dependencies:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
-pip install -r requirements.txt
 ```
 
+Activate it on Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Or on macOS and Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the pinned dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 Run the sanity checks:
 
 ```bash
