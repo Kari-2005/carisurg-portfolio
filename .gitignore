@@ -36,6 +36,7 @@ data/processed/
 !data/README.md
 
 # Model/output files
+outputs/
 models/
 *.h5
 *.joblib
