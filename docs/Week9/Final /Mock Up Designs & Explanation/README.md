@@ -155,10 +155,7 @@ Future development could include:
 
 This folder is intended to contain:
 
-- the nurse patient priority dashboard mock-up;
 - the annotated nurse priority dashboard;
-- the nurse patient review mock-up;
 - the annotated nurse patient review screen;
-- the patient waiting portal mock-up;
 - the annotated patient waiting portal; and
 - this README explaining the overall design vision.
