@@ -12,8 +12,6 @@ The design includes:
 - View-details interaction
 - Clinician override mechanism
 
-![Week 10 GUI Prototype](docs/Week10/Interim/GUIPrototype.png)
-
 ## Design Rationale
 
 All four urgency tiers are displayed within the same patient queue so that the escalation hierarchy can be evaluated in context.
