@@ -12,7 +12,7 @@ The design includes:
 - View-details interaction
 - Clinician override mechanism
 
-![Week 10 GUI Prototype](docs/Week10/Interim/GUIPrototype)
+![Week 10 GUI Prototype](docs/Week10/Interim/GUIPrototype.png)
 
 ## Design Rationale
 
